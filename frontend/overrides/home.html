@@ -19,8 +19,10 @@
         <div class="mdx-hero__content column">
             <h1>Ruokarähinä alkakoon!</h1>
             <p>Tomaatti, kurkku ja sitruuna ovat kamppailleet mestaruudesta jo pitkään ja pysyneet kärkikolmikossa viime vuodet. Viimeinkin pääsemme kurkistamaan kisameininkeihin ja katsomaan, löytyykö heille haastajia...</p>
+   
+            <p>ps. Käytä yläpalkin hakutoimintoa tutkiaksesi sopivia kilpailijoita 🧐</p>
             <a
-                class="md-button md-button--primary"
+                class="md-button md-button--primary" href="#taistelukentta"
             >
                 Siirry taistelukentälle
             </a>
@@ -40,9 +42,9 @@
     </div>
   </section>
 
-  <section class="container">
+  <section style="padding-top: 0" class="container padding-vertical-small">
     <div class="md-grid md-typeset">
-      <h2>Valitse kilpailijat</h2>
+      <h2 id="taistelukentta">Valitse kilpailijat</h2>
       <div class="mdx-hero grid">
 
         <div class="mdx-hero__content column">
@@ -53,7 +55,7 @@
               </option>
             </select>
 
-            <div>
+            <div class="fight-defend">
               [[ returnFighterOne ]]
             </div>
            
@@ -67,7 +69,7 @@
                   [[ item ]]
                 </option>
               </select>
-              <div>
+              <div class="fight-defend">
                 [[ returnFighterTwo ]]
               </div>
 
@@ -76,8 +78,9 @@
     </div>
   </section>
 
-  
-  <section class="container">
+  <hr>
+
+  <section style="padding-top:0" class="container padding-vertical-small">
     <div class="md-grid md-typeset">
       <h3>FIGHT</h3>
       <button @click="startFight"
@@ -88,7 +91,18 @@
     </div>
   </section>
 
-  <hr>
+  <section class="container padding-vertical-small">
+    <div class="victory" v-if="winner !== null">
+      🎉 [[ this.winner ]] <strong> on voitokas!</strong>
+    </div>
+      <div class="fight" v-for="item in fight">
+        <p><span>[[ item.attacker ]] <strong>hyökkäsi </strong> </span><span> [[ item.attack ]] <strong>voimalla </strong> </span> [[ item.defender ]] kimppuun.</p>
+        <p class="fight-defend">Energiaa jäi hyökkäyksen jälkeen jäljelle [[ item.hp ]]</p>
+      </div>
+      <div class="victory" v-if="winner !== null">
+        🎉 [[ this.winner ]] <strong> on voitokas!</strong>
+      </div>
+  </section>
 
   <section>
 
@@ -110,6 +124,9 @@
           clonedFighterTwo: null,
           fighterOnePolling: null,
           fighterTwoPolling: null,
+          fight: [],
+          winner: null,
+
         }
       },
       delimiters: ['[[', ']]'],
@@ -117,50 +134,62 @@
     computed: {
       // a computed getter
       returnFighterOne() {
-        return this.selectedFighterOne === null ? 'Kilpailijaa ei ole valittu' : this.veggieSoldiers[this.selectedFighterOne]
+        return this.selectedFighterOne === null ? 'Kilpailijaa ei ole valittu' : 'Valittu kilpailija: ' + this.veggieSoldiers[this.selectedFighterOne]['title']
       },
       returnFighterTwo() {
-        return this.selectedFighterTwo === null ? 'Kilpailijaa ei ole valittu' : this.veggieSoldiers[this.selectedFighterTwo]
+        return this.selectedFighterTwo === null ? 'Kilpailijaa ei ole valittu' : 'Valittu kilpailija; ' + this.veggieSoldiers[this.selectedFighterTwo]['title']
       }
     },
 
     methods: {
     attackFighterOne:function () {
       this.clonedFighterTwo['kestopisteet']  = this.clonedFighterTwo['kestopisteet'] + this.clonedFighterTwo['puolustusvoima'] - this.clonedFighterOne['hyökkäysvoima']
-      console.log(this.clonedFighterTwo['kestopisteet'])
+      this.fight.push({"attacker":this.clonedFighterOne['title'], "defender":this.clonedFighterTwo['title'], 'attack': this.clonedFighterOne['hyökkäysvoima'], 'hp': this.clonedFighterTwo['kestopisteet']})
+
       if (this.clonedFighterTwo['kestopisteet'] < 0){
         clearInterval(this.fighterOnePolling);
         clearInterval(this.fighterTwoPolling);
         console.log(this.clonedFighterOne['title'] + ' voitti kilpailun!')
+        this.winner = this.clonedFighterOne['title']
       }
     },
 
     attackFighterTwo:function () {
       this.clonedFighterOne['kestopisteet']  = this.clonedFighterOne['kestopisteet'] + this.clonedFighterOne['puolustusvoima'] - this.clonedFighterTwo['hyökkäysvoima']
-      console.log(this.clonedFighterOne['kestopisteet'])
+      this.fight.push({"attacker":this.clonedFighterTwo['title'], "defender":this.clonedFighterOne['title'], 'attack': this.clonedFighterTwo['hyökkäysvoima'], 'hp': this.clonedFighterOne['kestopisteet']})
+
       if (this.clonedFighterOne['kestopisteet'] < 0){
         clearInterval(this.fighterTwoPolling);
         clearInterval(this.fighterOnePolling);
         console.log(this.clonedFighterTwo['title'] + ' voitti kilpailun!')
+        this.winner = this.clonedFighterTwo['title']
       }
 },
 
     startFight: function () {
-      this.clonedFighterOne = {...this.veggieSoldiers[this.selectedFighterOne]}
-      this.clonedFighterOne['kestopisteet'] = parseFloat(this.clonedFighterOne['kestopisteet'])
-      this.clonedFighterOne['puolustusvoima'] = parseFloat(this.clonedFighterOne['puolustusvoima'])
-      this.clonedFighterOne['hyökkäysvoima'] = parseFloat(this.clonedFighterOne['hyökkäysvoima'])
-      this.clonedFighterOne['hitaus'] = parseFloat(this.clonedFighterOne['hitaus'])
+      if (selectedFighterOne === null || this.selectedFighterTwo === null){
+        alert("Valitse kilpailijat aloittaaksesi.")
+      }
+
+      else{
+        this.fight = []
+        this.winner = null
+        this.clonedFighterOne = {...this.veggieSoldiers[this.selectedFighterOne]}
+        this.clonedFighterOne['kestopisteet'] = parseFloat(this.clonedFighterOne['kestopisteet'])
+        this.clonedFighterOne['puolustusvoima'] = parseFloat(this.clonedFighterOne['puolustusvoima'])
+        this.clonedFighterOne['hyökkäysvoima'] = parseFloat(this.clonedFighterOne['hyökkäysvoima'])
+        this.clonedFighterOne['hitaus'] = parseFloat(this.clonedFighterOne['hitaus'])
 
 
-      this.clonedFighterTwo = {...this.veggieSoldiers[this.selectedFighterTwo]}
-      this.clonedFighterTwo['kestopisteet'] = parseFloat(this.clonedFighterTwo['kestopisteet'])
-      this.clonedFighterTwo['puolustusvoima'] = parseFloat(this.clonedFighterTwo['puolustusvoima'])
-      this.clonedFighterTwo['hyökkäysvoima'] = parseFloat(this.clonedFighterTwo['hyökkäysvoima'])
-      this.clonedFighterTwo['hitaus'] = parseFloat(this.clonedFighterTwo['hitaus'])
+        this.clonedFighterTwo = {...this.veggieSoldiers[this.selectedFighterTwo]}
+        this.clonedFighterTwo['kestopisteet'] = parseFloat(this.clonedFighterTwo['kestopisteet'])
+        this.clonedFighterTwo['puolustusvoima'] = parseFloat(this.clonedFighterTwo['puolustusvoima'])
+        this.clonedFighterTwo['hyökkäysvoima'] = parseFloat(this.clonedFighterTwo['hyökkäysvoima'])
+        this.clonedFighterTwo['hitaus'] = parseFloat(this.clonedFighterTwo['hitaus'])
 
-      this.fighterOneInterval()
-      this.fighterTwoInterval()
+        this.fighterOneInterval()
+        this.fighterTwoInterval()
+      }
     },
 
     fighterOneInterval () {
@@ -192,20 +221,11 @@
     }).mount('#app')
   </script>
 
-  <!-- <script>
-    async function loadSoldiers() {
-      console.log("terve");
-
-    }
-    loadSoldiers();
-    </script> -->
-  <!-- Hero for landing page -->
 {% endblock %}
 
 <!-- Content -->
 {% block content %}
 {{ super() }}
-<div>terveterve</div>
 
 {% endblock %}
 
