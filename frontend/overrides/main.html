@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+<!-- Announcement bar -->
+{% block announce %}
+  <a style="color:#fff;" href="https://www.ptjesse.fi">
+    Ruokarähinän bitit hukassa? <strong>Löydät koodit suoraan Githubista</strong>.
+  </a>
+
+{% endblock %}
+
+{% block scripts %}
+      {{ super() }}
+        <script src="//instant.page/5.1.1" type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+{% endblock %}

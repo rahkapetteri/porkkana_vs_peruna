@@ -1,0 +1,8 @@
+bkup_docs/
+docs/images
+docs/*
+site/
+!docs/javascripts
+!docs/stylesheets
+!docs/nav
+!docs/index.md

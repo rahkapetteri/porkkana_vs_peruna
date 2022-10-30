@@ -1,0 +1,216 @@
+site_name: Jessen ruokarähinä
+site_url: https://ravinto.ptjesse.fi
+theme:
+  name: material
+  language: fi
+  custom_dir: overrides
+  features:
+  #   - header.autohide
+    - navigation.top
+  logo: ./assets/Jesse-Raitapuro-favicon.png
+  favicon: ./assets/Jesse-Raitapuro-favicon.png
+  font: false
+
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: green
+      toggle:
+        icon: material/brightness-4
+        name: Vaihda tummaan tilaan
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: light green
+      toggle:
+        icon: material/brightness-7
+        name: Vaihda vaaleaan tilaan
+
+  features:
+    - search.share
+
+# extra_javascript:
+#   - javascripts/cookie-banner.js
+  # - javascripts/cookie-config.js
+
+
+copyright:   Copyright &copy; 2022 Jesse Raitapuro –
+  <button style='color:#ffffff' type="button" aria-label="Avaa evästeasetukset" data-cc="c-settings">Evästeasetukset</button><br><br>Sivuston kokannut <a style="border-bottom:1px solid var(--color-aargh);color:#ffffff" href="https://www.digiaargh.fi">Digiaargh</a>
+
+extra_css:
+  - stylesheets/cookie-banner.css
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - meta
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - footnotes
+
+  
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/instagram
+      link: https://instagram.com/jesse_raitapuro
+
+plugins:
+  - search:
+      lang: fi
+
+nav:
+  - index.md
+  - ananas-kuivattu-jogurttikuorrutus.md
+  - ananas-kuivattu.md
+  - ananas-tuore-punnittu-kuorineen.md
+  - appelsiini-punnittu-kuorineen.md
+  - aprikoosi-keskiarvo-kiveton.md
+  - aprikoosi-keskiarvo-punnittu-kivineen.md
+  - aprikoosi-kuivattu.md
+  - avokado-kuorittu-kiveton.md
+  - avokado-punnittu-kuorineen-ja-kivineen.md
+  - banaani-kuorittu.md
+  - banaani-punnittu-kuorineen.md
+  - banaanilastu-kuivattu-banaani-jogurttikuorrutus.md
+  - banaanilastu-kuivattu-banaani.md
+  - bataatti-kuorittu.md
+  - eksoottinen-hedelma-keskiarvo-mango-papaija-kuorittu.md
+  - erikoishedelma-eksoottinen-keskiarvo-mango-papaija-kuivattu.md
+  - etikkasienisailyke.md
+  - granaattiomena-kuorittu.md
+  - greippi-keskiarvo-punnittu-kuorineen.md
+  - greippi-kuorittu.md
+  - guava.md
+  - haaparousku.md
+  - herkkusieni-sailyke.md
+  - herkkusieni.md
+  - herkkutatti.md
+  - hunajameloni-kuorittu.md
+  - hunajameloni-punnittu-kuorineen.md
+  - inkivaari-juurakko-raaka.md
+  - jogurttirusina-jogurttihedelma-kuorrutettu-kuivattu-hedelma.md
+  - juolukka.md
+  - juuriselleri-mukulaselleri.md
+  - kangasrousku.md
+  - kangastatti.md
+  - kantarelli.md
+  - karpalo-kuivattu-karpalojauhe.md
+  - karpalo.md
+  - karvarousku.md
+  - karviainen.md
+  - katajanmarja.md
+  - kiinankaali.md
+  - kiivi-kuorittu.md
+  - kiivi-punnittu-kuorineen.md
+  - kirsikka-kiveton.md
+  - kirsikka-punnittu-kivineen.md
+  - korvasieni.md
+  - kukkakaali.md
+  - kyssakaali-kaalirapi.md
+  - lakka-suomuurain-hilla.md
+  - lampaankaapa.md
+  - lanttu.md
+  - lehtikaali.md
+  - luumu-kiveton-kuivattu.md
+  - luumu-kiveton.md
+  - luumu-tumma-kuivattu-punnittu-kivineen.md
+  - luumu-tumma-punnittu-kivineen.md
+  - maa-artisokka.md
+  - mandariini-keskiarvo-punnittu-kuorineen.md
+  - mandariini-kuorittu.md
+  - mango-kuivattu.md
+  - mango-kuorittu.md
+  - mannynherkkutatti-pakaste.md
+  - mansikka.md
+  - marja-aronia-kuivattu-marja-aroniajauhe.md
+  - marja-aronia.md
+  - marja-keskiarvo.md
+  - meloni-verkko-cantaloupemeloni-punnittu-kuorineen.md
+  - meloni-verkkomeloni-cantaloupemeloni-kuorittu.md
+  - mustaherukka-kuivattu-mustaherukkajauhe.md
+  - mustaherukka.md
+  - mustajuuri.md
+  - mustatorvisieni-kuivattu.md
+  - mustikka-kuivattu-mustikkajauhe.md
+  - mustikka-metsamustikka.md
+  - mustikka-pensasmustikka.md
+  - nauris.md
+  - oliivi-keskiarvo-kiveton-oljyssa-vihrea-musta.md
+  - oliivi-keskiarvo-kiveton-suolaliemessa-vihrea.md
+  - oliivi-keskiarvo-punnittu-kivineen-oljyssa-vihrea-musta.md
+  - omena-keskiarvo-punnittu-kuorineen.md
+  - omena-kotimainen-kuorineen.md
+  - omena-kotimainen-kuorittu.md
+  - omena-kuivattu.md
+  - omena-ulkomainen-kuorineen.md
+  - omena-ulkomainen-kuorittu.md
+  - omenalastu.md
+  - osterivinokas.md
+  - paaryna-kuorittu.md
+  - paaryna-punnittu-kuorineen.md
+  - palsternakka.md
+  - papaija-kuivattu.md
+  - papaija-kuorittu.md
+  - parsakaali-brokkoli.md
+  - passionhedelma.md
+  - persikka-kuivattu.md
+  - persikka-nektariini-keskiarvo-punnittu-kivineen.md
+  - persikka-nektariini-kuorittu-kiveton.md
+  - peruna-kuorittu-suurtaloustuote-suojakaasupakattu.md
+  - peruna-punnittu-kuorineen.md
+  - peruna-uusi.md
+  - peruna-vanha-kuorittu.md
+  - pihlajanmarja-kuivattu-pihlajanmarjajauhe.md
+  - pihlajanmarja.md
+  - piparjuuri.md
+  - porkkana-kuivattu.md
+  - punaherukka.md
+  - puolukka-kuivattu-puolukkajauhe.md
+  - puolukka.md
+  - quorn-fileet-kuutiot-rouhe.md
+  - retiisi.md
+  - rusina.md
+  - ruusukaali.md
+  - ruusunmarja-kuivattu-ruusunmarjajauhe.md
+  - ruusunmarja.md
+  - sekahedelma-kuivattu.md
+  - sekavihannes-porkkana-kukkakaali-herne-papu.md
+  - sharon-kaki-persimon.md
+  - sieni-rouskut-suolattu-kayttovalmis.md
+  - sieni-tatti-hapero.md
+  - siitakesieni.md
+  - sitruuna-keskiarvo-punnittu-kuorineen.md
+  - sitruuna-kuorittu.md
+  - sorbetti-vadelmasorbetti-teollinen.md
+  - suklaarusina.md
+  - suppilovahvero.md
+  - taateli-kuivattu-punnittu-kivineen.md
+  - tyrnimarja-kuivattu-tyrnimarjajauhe.md
+  - tyrnimarja.md
+  - vadelma.md
+  - valipalapatukka-raakapatukka-bare-bar-viljaton.md
+  - valkokaali-kerakaali.md
+  - valkoretikka.md
+  - variksenmarja.md
+  - verigreippi-kuorittu.md
+  - vesikastanja.md
+  - vesimeloni-kuorittu.md
+  - vesimeloni-punnittu-kuorineen.md
+  - viikuna-kuivattu-punnittu-kantoineen.md
+  - viikuna-kuivattu.md
+  - viinirypale-keskiarvo-kiveton-vihrea-tumma.md
+  - viinirypale-keskiarvo-punnittu-kivineen-vihrea-tumma.md

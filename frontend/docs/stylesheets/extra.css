@@ -1,0 +1,223 @@
+:root > * {
+    --md-text-font: "Nunito", sans-serif;
+  }
+
+  [data-md-color-scheme="default"]{
+    /* --md-primary-fg-color: #18181b; */
+    /* --md-primary-bg-color: #d1d5db; */
+    --similar-product: #545773;
+    --color-aargh: #19ffdd;
+    --color-product: #2e2f35;
+    --color-product-bg:#2e2f35;
+  }
+
+
+  [data-md-color-scheme="slate"]{
+    /* --md-primary-fg-color: #18181b; */
+    /* --md-primary-bg-color: #d1d5db; */
+    --similar-product: #d1d5db;
+    /* --color-aargh: #18181b; */
+    --color-product: #d1d5db;
+    /* --color-product-bg: #18181b; */
+  }
+
+  /* [data-md-color-scheme="slate"]{
+    --md-primary-fg-color: #18181b;
+    --md-primary-bg-color: #d1d5db;
+  } */
+
+  .md-header__topic:first-child{
+    font-weight: 400 !important;
+  }
+
+  .md-button.btnCategory{
+	padding: 0.75rem 1.25rem;
+	background-color: transparent;
+	border-radius: 0.25rem;
+	border-bottom-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	text-decoration: none;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	align-items: center;
+    display: inline-flex;
+    justify-content: space-between;
+	transition: transform .3s, background-color .3s, box-shadow .6s;
+	color: var(--color-product);
+
+    border: 2px solid #4a5568;
+    font-weight: 500;
+  }
+
+  .md-button.btnCategory:hover{
+    transform: translateY(-5px);
+    box-shadow: 1px 10px 30px 0 rgba(0,0,0,.1);
+    background-color: var(--color-product-bg);
+	  color: #ffffff;
+    border-color: var(--color-product-bg);
+}
+
+.md-button.md-button--primary.similarProduct{
+  border-bottom: 0;
+  background-color: transparent;
+  border: 1px solid var(--similar-product);
+  color: var(--similar-product);
+  border-radius: 1rem;
+  font-size: 12px;
+  box-sizing: border-box;
+  font-style: normal;
+  line-height: 1;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  padding: 6px 14px;
+  transition: border .2s cubic-bezier(.19,1,.22,1),background-color .2s cubic-bezier(.19,1,.22,1);
+}
+
+
+.card-row{
+  grid-gap: 0.4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(16rem,1fr));
+  margin: 1em 0;
+}
+
+.card-row ul{
+  display: contents !important;
+}
+
+ .card-row .card{
+  border: 0.05rem solid var(--md-default-fg-color--lightest) !important;
+  border-radius: 0.1rem !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0.8rem !important;
+  -webkit-transition: border .25s,box-shadow .25s !important;
+  transition: border .25s,box-shadow .25s !important;
+}
+.card-row .card:hover{
+  /* transform: translateY(-5px); */
+  box-shadow: 1px 10px 30px 0 rgba(0,0,0,.1) !important;
+}
+
+
+.md-typeset .card-row .card p:first-child{
+  margin-top:0;
+  display: flex;
+  align-items: center;
+}
+
+.md-typeset .card-row .card span:first-child{
+  margin-right: 0.4rem;
+  height: 1.2rem;
+}
+
+
+.md-content__inner.md-typeset img{
+  max-width: 600px;
+}
+
+@media screen and (max-width:960px) {
+  .md-content__inner.md-typeset img{
+  max-width: 100%;
+  }
+}
+
+
+@media screen and (max-width:600px) {
+
+  
+  .md-typeset .card-row .card p:first-child{
+    align-items: flex-start;
+  }
+
+  .card-row{
+    grid-template-columns: repeat(auto-fit,minmax(14rem,1fr));
+  }
+}
+
+
+@media screen and (max-width:400px) {
+  .card-row{
+    grid-template-columns: repeat(auto-fit,minmax(11rem,1fr));
+  }
+}
+
+
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-500.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-700.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito",-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;
+  src: url("./assets/fonts/nunito-v23-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: bold;
+}
+
+
+/* @font-face {
+  font-family: "DroidSerif";
+  src: url("DroidSerif-Italic-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DroidSerif";
+  src: url("DroidSerif-Bold-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DroidSerif";
+  src: url("DroidSerif-BoldItalic-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+} */

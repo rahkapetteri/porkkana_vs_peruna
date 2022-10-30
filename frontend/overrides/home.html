@@ -1,0 +1,213 @@
+{% extends "main.html" %}
+
+{% block extrahead %}
+<!-- CSS only -->
+<link rel="stylesheet" href="assets/css/ruokarahina.css">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% endblock %}
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+  {{ super() }}
+  <div id="app">
+  <section class="container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero grid">
+  
+        <!-- Hero content -->
+        <div class="mdx-hero__content column">
+            <h1>Ruokarähinä alkakoon!</h1>
+            <p>Tomaatti, kurkku ja sitruuna ovat kamppailleet mestaruudesta jo pitkään ja pysyneet kärkikolmikossa viime vuodet. Viimeinkin pääsemme kurkistamaan kisameininkeihin ja katsomaan, löytyykö heille haastajia...</p>
+            <a
+                class="md-button md-button--primary"
+            >
+                Siirry taistelukentälle
+            </a>
+            </div>
+  
+        <!-- Hero image -->
+        <div class="mdx-hero__image column">
+          <img
+            src="http://127.0.0.1:8000/assets/ruokarahina.png"
+            alt=""
+            width="1659"
+            height="1200"
+            draggable="false"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="md-grid md-typeset">
+      <h2>Valitse kilpailijat</h2>
+      <div class="mdx-hero grid">
+
+        <div class="mdx-hero__content column">
+            <label for="selectedFighterOne">Valitse ensimmäinen kilpailija:</label>
+            <select v-model="selectedFighterOne" id="selectedFighterOne">
+              <option :value="item" v-for="item in veggieOptions">
+                [[ item ]]
+              </option>
+            </select>
+
+            <div>
+              [[ returnFighterOne ]]
+            </div>
+           
+            </div>
+  
+
+            <div class="mdx-hero__content column">
+              <label for="selectedFighterTwo">Valitse toinen kilpailija:</label>
+              <select v-model="selectedFighterTwo" id="selectedFighterTwo">
+                <option :value="item" v-for="item in veggieOptions">
+                  [[ item ]]
+                </option>
+              </select>
+              <div>
+                [[ returnFighterTwo ]]
+              </div>
+
+              </div>
+        </div>
+    </div>
+  </section>
+
+  
+  <section class="container">
+    <div class="md-grid md-typeset">
+      <h3>FIGHT</h3>
+      <button @click="startFight"
+      class="md-button md-button--primary"
+  >
+      Aloita kilpailu
+    </button>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+
+</section>
+
+ </div>
+
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          veggieSoldiers: null,
+          veggieOptions: null,
+          selectedFighterOne: null,
+          selectedFighterTwo: null,
+          clonedFighterOne: null,
+          clonedFighterTwo: null,
+          fighterOnePolling: null,
+          fighterTwoPolling: null,
+        }
+      },
+      delimiters: ['[[', ']]'],
+
+    computed: {
+      // a computed getter
+      returnFighterOne() {
+        return this.selectedFighterOne === null ? 'Kilpailijaa ei ole valittu' : this.veggieSoldiers[this.selectedFighterOne]
+      },
+      returnFighterTwo() {
+        return this.selectedFighterTwo === null ? 'Kilpailijaa ei ole valittu' : this.veggieSoldiers[this.selectedFighterTwo]
+      }
+    },
+
+    methods: {
+    attackFighterOne:function () {
+      this.clonedFighterTwo['kestopisteet']  = this.clonedFighterTwo['kestopisteet'] + this.clonedFighterTwo['puolustusvoima'] - this.clonedFighterOne['hyökkäysvoima']
+      console.log(this.clonedFighterTwo['kestopisteet'])
+      if (this.clonedFighterTwo['kestopisteet'] < 0){
+        clearInterval(this.fighterOnePolling);
+        clearInterval(this.fighterTwoPolling);
+        console.log(this.clonedFighterOne['title'] + ' voitti kilpailun!')
+      }
+    },
+
+    attackFighterTwo:function () {
+      this.clonedFighterOne['kestopisteet']  = this.clonedFighterOne['kestopisteet'] + this.clonedFighterOne['puolustusvoima'] - this.clonedFighterTwo['hyökkäysvoima']
+      console.log(this.clonedFighterOne['kestopisteet'])
+      if (this.clonedFighterOne['kestopisteet'] < 0){
+        clearInterval(this.fighterTwoPolling);
+        clearInterval(this.fighterOnePolling);
+        console.log(this.clonedFighterTwo['title'] + ' voitti kilpailun!')
+      }
+},
+
+    startFight: function () {
+      this.clonedFighterOne = {...this.veggieSoldiers[this.selectedFighterOne]}
+      this.clonedFighterOne['kestopisteet'] = parseFloat(this.clonedFighterOne['kestopisteet'])
+      this.clonedFighterOne['puolustusvoima'] = parseFloat(this.clonedFighterOne['puolustusvoima'])
+      this.clonedFighterOne['hyökkäysvoima'] = parseFloat(this.clonedFighterOne['hyökkäysvoima'])
+      this.clonedFighterOne['hitaus'] = parseFloat(this.clonedFighterOne['hitaus'])
+
+
+      this.clonedFighterTwo = {...this.veggieSoldiers[this.selectedFighterTwo]}
+      this.clonedFighterTwo['kestopisteet'] = parseFloat(this.clonedFighterTwo['kestopisteet'])
+      this.clonedFighterTwo['puolustusvoima'] = parseFloat(this.clonedFighterTwo['puolustusvoima'])
+      this.clonedFighterTwo['hyökkäysvoima'] = parseFloat(this.clonedFighterTwo['hyökkäysvoima'])
+      this.clonedFighterTwo['hitaus'] = parseFloat(this.clonedFighterTwo['hitaus'])
+
+      this.fighterOneInterval()
+      this.fighterTwoInterval()
+    },
+
+    fighterOneInterval () {
+        this.fighterOnePolling = setInterval(() => {
+            this.attackFighterOne()
+        }, this.clonedFighterOne['hitaus'])
+    },
+
+    fighterTwoInterval () {
+        this.fighterTwoPolling = setInterval(() => {
+            this.attackFighterTwo()
+        }, this.clonedFighterTwo['hitaus'])
+    }
+  },
+
+      mounted () {
+        axios
+        .get('/assets/json/search_index_parsed.json')
+        .then(response => (
+          this.veggieSoldiers = response.data,
+          console.log(this.veggieSoldiers),
+          console.log(Object.keys(this.veggieSoldiers)),
+          this.veggieOptions = Object.keys(this.veggieSoldiers)
+          ))
+    }
+
+
+
+    }).mount('#app')
+  </script>
+
+  <!-- <script>
+    async function loadSoldiers() {
+      console.log("terve");
+
+    }
+    loadSoldiers();
+    </script> -->
+  <!-- Hero for landing page -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+{{ super() }}
+<div>terveterve</div>
+
+{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}{% endblock %}
