@@ -32,10 +32,10 @@ Suodatin ruokakategorioiksi seuraavat:
 
 Tämän jälkeen ajoin tiedostot MkDocsin läpi, jonka kautta muodostin yksinkertaisen hakuindeksin [/search_index/parse_search_index.ipynb](/search_index/parse_search_index.ipynb). Muokkasin haluamani ominaisuudet indeksiin ("taisteluominaisuudet") ja tämän jälkeen tiedostot sekä hakuominaisuus oli valmis jonka avulla pystyy etsimään vihanneskilpailijoita. Tässä vaiheessa ei ole vielä mitään "ruokarähinää", ainoastaan tiedostot tutkittavassa muodossa frontendissä.
 
-Datan muodostuksen jälkeen laitoin MkDocsilla ympäristön pyörimään ja aloin kasaamaan Vuella "ruokarähinää". Vuella haen aiemmin muodostamani indeksin. Indeksin haun jälkeen lisään indeksin kilpailijavaihtoehdot valintalaatikoihin ja kilpailun aloittamisen jälkeen kaksi intervalli funktiota alkaa pyörimään kilpailijoiden "hitaus" ominaiuuden nopeudella. Millisekunneilla kilpailun pystyy pyöräyttämään nopeasti läpi valituilla hahmoilla. Hahmot hyökkäävät toistena kimppuun asynkronisesti hyökkäysvoimalla jota hidastaa puolustusvoima. Kilpailun syöte tulostuu ruudulle.
+Datan muodostuksen jälkeen laitoin MkDocsilla ympäristön pyörimään ja aloin kasaamaan Vuella "ruokarähinää". Vuella haen aiemmin muodostamani indeksin. Indeksin haun jälkeen lisään indeksin kilpailijavaihtoehdot valintalaatikoihin ja kilpailun aloittamisen jälkeen kaksi intervalli funktiota alkaa pyörimään kilpailijoiden "hitaus" ominaisuuden nopeudella. Millisekunneilla kilpailun pystyy pyöräyttämään nopeasti läpi valituilla hahmoilla. Hahmot hyökkäävät toistensa kimppuun asynkronisesti hyökkäysvoimalla jota hidastaa puolustusvoima. Kilpailun syöte tulostuu ruudulle.
 
 Vue.js toteutus löytyy polusta: [/frontend/overrides/home.html](/frontend/overrides/home.html)
 
-> Vue.js ja axios.js kirjastot lisätään CDN:nnän kautta, joka ei ole optimaalisin tapa, mutta käytössä ajanpuutteen vuoksi
+> Vue.js ja axios.js kirjastot lisätään CDN:nnän kautta, mikä ei ole optimaalisin tapa, mutta käytössä ajanpuutteen vuoksi
 
 Lisäsin [instant.pagen](https://instant.page/ ) linkkien esilatausta varten.
